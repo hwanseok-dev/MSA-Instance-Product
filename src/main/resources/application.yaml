@@ -9,9 +9,9 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
-#logging:
-#  level:
-#    root: info
-#    com.zaxxer.hikari.HikariConfig: debug
-#    org.hibernate.SQL: debug
-#    hibernate.type.descriptor.sql.BasicBinder: trace
+logging:
+  level:
+    root: info
+    com.zaxxer.hikari.HikariConfig: debug
+    org.hibernate.SQL: debug
+    hibernate.type.descriptor.sql.BasicBinder: trace
