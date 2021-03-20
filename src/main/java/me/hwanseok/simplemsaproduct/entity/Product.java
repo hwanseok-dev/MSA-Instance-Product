@@ -1,6 +1,7 @@
 package me.hwanseok.simplemsaproduct.entity;
 
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ import javax.persistence.Id;
 @Entity
 @Builder
 @Accessors(chain = true)
+@ApiModel
 public class Product {
     /**
      * 개별 주문 번호

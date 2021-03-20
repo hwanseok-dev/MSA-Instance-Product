@@ -39,15 +39,17 @@ class ProductRepositoryTest {
 
     @Test
     public void read() {
-        Long id = 473L;
+        Long id = 477L;
         Optional<Product> product = productRepository.findById(id);
+        System.out.println(product);
         Assertions.assertTrue(product.isPresent());
     }
 
     @Test
-    @Transactional
     public void update() {
-        Optional<Product> product = productRepository.findById(2L);
+        Long id = 477L;
+        Optional<Product> product = productRepository.findById(id);
+        System.out.println(product);
         product.ifPresent(selectedProduct -> {
             selectedProduct.setName("changedName");
             productRepository.save(selectedProduct);
@@ -55,9 +57,8 @@ class ProductRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void delete() {
-        Long id = 3L;
+        Long id = 477L;
         Optional<Product> product = productRepository.findById(id);
         Assertions.assertTrue(product.isPresent());    // false
         product.ifPresent(selectUser -> {

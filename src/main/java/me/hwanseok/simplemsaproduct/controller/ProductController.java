@@ -1,34 +1,39 @@
 package me.hwanseok.simplemsaproduct.controller;
 
 
+import io.swagger.annotations.ApiModel;
+import lombok.RequiredArgsConstructor;
 import me.hwanseok.simplemsaproduct.entity.Product;
+import me.hwanseok.simplemsaproduct.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/product")
 public class ProductController {
 
+    private final ProductService productService;
+
     @GetMapping("/{id}")
     public Product findById(@PathVariable("id") Long id){
-        return Product.builder().name("defaultProduct").build();
+        return productService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product create(@RequestBody Product request){
-        // TODO Change return value from Product to createdProductId
-        return Product.builder().id(request.getId()).name(request.getName()).build();
+        return productService.create(request);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable("id") Long id, @RequestBody Product request){
-        // TODO
+    public Product update(@PathVariable("id") Long id, @RequestBody Product request){
+        return productService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
-        // TODO
+    public HttpStatus delete(@PathVariable("id") Long id){
+        return productService.delete(id);
     }
 }
