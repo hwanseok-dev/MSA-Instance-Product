@@ -35,6 +35,7 @@ class ProductRepositoryTest {
             System.out.println(newItem);
             Assertions.assertNotNull(newItem);
         }
+
     }
 
     @Test

@@ -21,15 +21,15 @@ public class ProductService {
     public Product create(Product request){
         return productRepository.save(
                 Product.builder()
-                        .name(request.getName())
+                        .description(request.getDescription())
                         .build());
     }
 
-    public Product update(Long id, Product request){
-        Optional<Product> prev = productRepository.findById(id);
+    public Product update(Product request){
+        Optional<Product> prev = productRepository.findById(request.getId());
         if(prev.isPresent()){
             Product product = prev.get();
-            product.setName(request.getName());
+            product.setDescription(request.getDescription());
             return productRepository.save(product);
         }else{
             return null;

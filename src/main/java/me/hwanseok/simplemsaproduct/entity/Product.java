@@ -25,13 +25,13 @@ import javax.persistence.Id;
 @ApiModel
 public class Product {
     /**
-     * 개별 주문 번호
+     * 상품 번호
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
-     * 상품 이름
+     * 상품 설명
      */
-    private String name;
+    private String description;
 }

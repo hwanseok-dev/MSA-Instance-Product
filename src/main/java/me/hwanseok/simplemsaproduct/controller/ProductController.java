@@ -26,10 +26,10 @@ public class ProductController {
         return productService.create(request);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public Product update(@PathVariable("id") Long id, @RequestBody Product request){
-        return productService.update(id, request);
+    public Product update(@RequestBody Product request){
+        return productService.update(request);
     }
 
     @DeleteMapping("/{id}")
