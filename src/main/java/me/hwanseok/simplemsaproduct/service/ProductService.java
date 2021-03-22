@@ -40,7 +40,7 @@ public class ProductService {
             throw new ProductNotFoundException();
         }
         return ResponseEntity.ok().body(ProductResponseListDto.builder()
-                .productResponseListDtoList(options.stream().map(Optional::get).map(product ->
+                .productResponseDtoList(options.stream().map(Optional::get).map(product ->
                         ProductResponseDto.builder()
                                 .id(product.getId())
                                 .description(product.getDescription())

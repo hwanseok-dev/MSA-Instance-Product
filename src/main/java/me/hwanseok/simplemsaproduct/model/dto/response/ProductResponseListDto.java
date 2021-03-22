@@ -15,5 +15,5 @@ import java.util.List;
 @ApiModel
 @Builder
 public class ProductResponseListDto {
-    private List<ProductResponseDto> productResponseListDtoList;
+    private List<ProductResponseDto> productResponseDtoList;
 }

@@ -10,6 +10,7 @@ import me.hwanseok.simplemsaproduct.model.dto.response.ProductResponseListDto;
 import me.hwanseok.simplemsaproduct.service.ProductService;
 import org.omg.CORBA.portable.ResponseHandler;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/product")
+@RequestMapping(value = "/api/product", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProductController {
 
     private final ProductService productService;
@@ -47,7 +48,7 @@ public class ProductController {
         return productService.delete(id);
     }
 
-    @GetMapping("/{ids}")
+    @GetMapping("")
     public ResponseEntity<ProductResponseListDto> readByIds(@RequestParam("ids") String productIds) {
         List<Long> productIdList = new ArrayList<>(Arrays.asList(productIds.split(",")))
                 .stream()
