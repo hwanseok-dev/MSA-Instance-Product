@@ -7,13 +7,16 @@ import me.hwanseok.simplemsaproduct.exception.ProductNotFoundException;
 import me.hwanseok.simplemsaproduct.model.Product;
 import me.hwanseok.simplemsaproduct.model.dto.request.ProductRequestDto;
 import me.hwanseok.simplemsaproduct.model.dto.response.ProductResponseDto;
+import me.hwanseok.simplemsaproduct.model.dto.response.ProductResponseListDto;
 import me.hwanseok.simplemsaproduct.repository.ProductRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +31,21 @@ public class ProductService {
                         .id(product.getId())
                         .description(product.getDescription()).build()))
                 .orElseThrow(ProductNotFoundException::new);
+    }
+
+    public ResponseEntity<ProductResponseListDto> findByIds(List<Long> ids) {
+        List<Optional<Product>> options = productRepository.findByIdIn(ids);
+        System.out.println(options);
+        if (options.size() != ids.size()) {
+            throw new ProductNotFoundException();
+        }
+        return ResponseEntity.ok().body(ProductResponseListDto.builder()
+                .productResponseListDtoList(options.stream().map(Optional::get).map(product ->
+                        ProductResponseDto.builder()
+                                .id(product.getId())
+                                .description(product.getDescription())
+                                .build()).collect(Collectors.toList()))
+                .build());
     }
 
     public ResponseEntity<ProductResponseDto> create(ProductRequestDto request) {
@@ -68,7 +86,7 @@ public class ProductService {
             } else {
                 throw new ProductNotFoundException();
             }
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new ProductConstraintViolationException();
         }
 
