@@ -1,7 +1,7 @@
 package me.hwanseok.simplemsaproduct.repositoryTest;
 
 import me.hwanseok.simplemsaproduct.config.JpaConfig;
-import me.hwanseok.simplemsaproduct.entity.Product;
+import me.hwanseok.simplemsaproduct.model.Product;
 import me.hwanseok.simplemsaproduct.repository.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +30,7 @@ class ProductRepositoryTest {
     public void create() {
         for (int i = 0; i < 30; i++) {
             Product product = new Product();
-            product.setName("TestName"+i);
+            product.setDescription("TestDescription"+i);
             Product newItem = productRepository.save(product);
             System.out.println(newItem);
             Assertions.assertNotNull(newItem);
@@ -52,7 +52,7 @@ class ProductRepositoryTest {
         Optional<Product> product = productRepository.findById(id);
         System.out.println(product);
         product.ifPresent(selectedProduct -> {
-            selectedProduct.setName("changedName");
+            selectedProduct.setDescription("changedDescription");
             productRepository.save(selectedProduct);
         });
     }

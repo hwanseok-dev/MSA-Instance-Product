@@ -1,4 +1,4 @@
-package me.hwanseok.simplemsaproduct.entity;
+package me.hwanseok.simplemsaproduct.model;
 
 
 import io.swagger.annotations.ApiModel;
