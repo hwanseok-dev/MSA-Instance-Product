@@ -59,14 +59,12 @@ class ProductRepositoryTest {
 
     @Test
     public void delete() {
-        Long id = 477L;
-        Optional<Product> product = productRepository.findById(id);
-        Assertions.assertTrue(product.isPresent());    // false
-        product.ifPresent(selectUser -> {
-            productRepository.delete(selectUser);
-        });
-        Optional<Product> deleteProduct = productRepository.findById(3L);
-        Assertions.assertFalse(deleteProduct.isPresent()); // false
+//        Long id = 477L;
+//        Optional<Product> product = productRepository.findById(id);
+//        Assertions.assertTrue(product.isPresent());    // false
+//        product.ifPresent(selectUser -> productRepository.delete(selectUser));
+//        Optional<Product> deleteProduct = productRepository.findById(3L);
+//        Assertions.assertFalse(deleteProduct.isPresent()); // false
     }
 
 }
